@@ -6,7 +6,900 @@
 <title>ABM 2026 — Macau · Hong Kong</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABM 2026 — Macau · Hong Kong</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --blk: #0e0e0e; --wht: #ffffff;
+  --peach: #F4C4A8; --pink: #F0C0C8; --cream: #F5F2C8; --sky: #D1E6F6;
+  --H: 'League Gothic', Impact, sans-serif; --B: 'DM Sans', sans-serif;
+  --BASE: https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/;
+}
+body { font-family: var(--B); background: var(--wht); color: var(--blk); overflow-x: hidden; }
+
+/* ── NAV ── */
+.page-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 36px; border-bottom: 1px solid rgba(14,14,14,0.09);
+}
+.page-nav.dark { background: transparent; position: absolute; top: 0; left: 0; right: 0; z-index: 10; border-color: transparent; }
+.brand { font-family: var(--H); font-size: 1rem; text-transform: uppercase; letter-spacing: .05em; display: flex; align-items: center; gap: 3px; }
+.brand sup { font-size: .45rem; }
+.dark .brand { color: var(--wht); }
+.nav-cols { display: flex; gap: 44px; }
+.nav-col { display: flex; flex-direction: column; gap: 5px; }
+.nav-col a { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 500; text-decoration: none; transition: opacity .2s; }
+.dark .nav-col a { color: rgba(255,255,255,.82); }
+.dark .nav-col a:hover { color: var(--wht); }
+.light .nav-col a { color: rgba(14,14,14,.6); }
+.light .nav-col a:hover { color: var(--blk); }
+.nav-r { display: flex; align-items: center; gap: 12px; }
+.nav-pill { border-radius: 20px; padding: 5px 14px; font-size: .7rem; font-family: var(--B); cursor: pointer; display: flex; align-items: center; gap: 5px; background: transparent; }
+.dark .nav-pill { border: 1px solid rgba(255,255,255,.45); color: var(--wht); }
+.light .nav-pill { border: 1px solid rgba(14,14,14,.25); color: var(--blk); }
+.nav-ham { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.nav-ham span { display: block; width: 20px; height: 1.5px; }
+.dark .nav-ham span { background: var(--wht); }
+.light .nav-ham span { background: var(--blk); }
+
+/* ════ 1. HERO ════ */
+#hero { position: relative; background: var(--sky); }
+.hero-photo {
+  width: 100%; height: 86vh; min-height: 580px;
+  background: url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/hero%20section%20image%20-%20Macau%20%E2%80%93%20Hongkong%20China.jpg') center/cover no-repeat;
+  position: relative;
+}
+.hero-photo::after {
+  content:''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(14,14,14,.2) 0%, rgba(14,14,14,.02) 40%, rgba(14,14,14,.55) 100%);
+}
+.hero-giant {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 0 28px;
+  font-family: var(--H); font-size: clamp(5rem,12.5vw,12.5rem);
+  text-transform: uppercase; line-height: .87; color: var(--wht);
+  letter-spacing: -.01em; pointer-events: none; z-index: 2;
+  animation: fuAnim .8s ease both;
+}
+.hero-sub-row { display: flex; align-items: flex-end; justify-content: space-between; }
+.hero-left-caption { max-width: 290px; padding: 32px 36px; color: var(--blk); }
+.hero-left-caption p { font-size: .8rem; line-height: 1.65; color: rgba(14,14,14,.65); margin-bottom: 10px; }
+.hero-right-box {
+  background: var(--blk); color: var(--wht);
+  padding: 44px 48px; min-width: 370px; max-width: 410px;
+  display: flex; flex-direction: column; gap: 22px;
+}
+.hero-right-box p { font-size: 1.28rem; font-weight: 500; line-height: 1.45; }
+.hero-right-box small { font-size: .74rem; opacity: .5; line-height: 1.65; }
+.hero-cta { display: inline-flex; align-items: center; gap: 12px; font-size: .84rem; font-weight: 600; color: var(--wht); text-decoration: none; }
+.hero-stats { background: var(--sky); display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid rgba(14,14,14,.08); }
+.hstat { padding: 34px 40px; border-right: 1px solid rgba(14,14,14,.09); }
+.hstat:last-child { border-right: none; }
+.hstat-n { font-family: var(--H); font-size: 3.2rem; text-transform: uppercase; margin-bottom: 8px; }
+.hstat-d { font-size: .8rem; color: rgba(14,14,14,.6); line-height: 1.55; max-width: 220px; }
+
+/* ════ 2. DESTINATIONS ════ */
+#dest { background: var(--peach); padding: 0; }
+.dest-body { display: grid; grid-template-columns: 340px 1fr; min-height: 82vh; }
+.dest-l { padding: 52px 36px; display: flex; flex-direction: column; justify-content: space-between; }
+.sec-title { font-family: var(--H); font-size: clamp(3.2rem,5.5vw,5.5rem); text-transform: uppercase; line-height: .91; }
+.dest-tag { font-weight: 600; font-size: .88rem; margin: 14px 0 6px; }
+.dest-sub { font-size: .76rem; color: rgba(14,14,14,.55); line-height: 1.65; max-width: 200px; }
+.ctrls { display: flex; align-items: center; gap: 16px; margin-top: 32px; }
+.cbtn { width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid rgba(14,14,14,.22); background: transparent; cursor: pointer; font-size: 1rem; transition: all .2s; display: flex; align-items: center; justify-content: center; }
+.cbtn:hover { background: var(--blk); color: var(--wht); border-color: var(--blk); }
+.ccount { font-size: .78rem; color: rgba(14,14,14,.45); }
+.btn-blk { display: inline-flex; align-items: center; gap: 10px; background: var(--blk); color: var(--wht); padding: 15px 28px; font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-decoration: none; border: none; cursor: pointer; }
+.dest-r { display: flex; overflow: hidden; }
+.dcards { display: flex; gap: 0; transition: transform .4s ease; }
+.dcard { flex: 0 0 320px; position: relative; overflow: hidden; cursor: pointer; transition: flex .35s ease; display: flex; flex-direction: column; justify-content: flex-end; }
+.dcard:hover { flex: 0 0 360px; }
+.dcard-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .5s ease; }
+.dcard:hover .dcard-bg { transform: scale(1.05); }
+.dcard-ov { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,14,14,.88) 0%, rgba(14,14,14,.05) 55%); }
+.dcard-body { position: relative; z-index: 2; padding: 24px 26px 30px; color: var(--wht); }
+.dcard-loc { display: inline-block; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.18); padding: 4px 11px; font-size: .63rem; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 12px; }
+.dcard-rat { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,.1); padding: 3px 9px; border-radius: 20px; font-size: .7rem; margin-bottom: 10px; }
+.dcard-name { font-family: var(--H); font-size: 2.2rem; text-transform: uppercase; line-height: .93; margin-bottom: 10px; }
+.dcard-desc { font-size: .76rem; line-height: 1.6; opacity: .78; margin-bottom: 14px; }
+.dcard-link { display: inline-flex; align-items: center; gap: 8px; font-size: .73rem; font-weight: 600; color: var(--wht); text-decoration: none; }
+
+/* ════ 3. SERVICES ════ */
+#services { background: var(--pink); padding: 0; }
+.svc-body { display: grid; grid-template-columns: 360px 1fr; min-height: 82vh; }
+.svc-l { padding: 52px 36px; display: flex; flex-direction: column; justify-content: space-between; }
+.svc-desc { font-size: .84rem; color: rgba(14,14,14,.58); line-height: 1.7; max-width: 280px; margin-top: 18px; }
+.svc-r { display: grid; grid-template-columns: 1fr 1fr; border-left: 1px solid rgba(14,14,14,.1); }
+.scell { padding: 40px 36px; border-bottom: 1px solid rgba(14,14,14,.1); border-right: 1px solid rgba(14,14,14,.1); position: relative; cursor: pointer; transition: background .2s; display: flex; flex-direction: column; }
+.scell:nth-child(2n) { border-right: none; }
+.scell:nth-child(3), .scell:nth-child(4) { border-bottom: none; }
+.scell:hover { background: rgba(14,14,14,.03); }
+.sarr { position: absolute; top: 26px; right: 26px; font-size: .95rem; color: rgba(14,14,14,.35); transition: transform .2s,color .2s; }
+.scell:hover .sarr { transform: translate(3px,-3px); color: var(--blk); }
+.sname { font-family: var(--H); font-size: 2.6rem; text-transform: uppercase; line-height: .89; margin-bottom: 10px; margin-top: auto; }
+.scell:nth-child(3) .sname { color: #c43060; }
+.sdesc { font-size: .77rem; color: rgba(14,14,14,.52); line-height: 1.6; }
+.scell-img {
+  width: calc(100% + 72px); /* bleed to cell edges */
+  margin: -40px -36px 20px -36px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  transition: transform .4s ease;
+  overflow: hidden;
+}
+.scell:hover .scell-img { transform: scale(1.03); }
+/* Image always first — push title/desc to bottom */
+.scell { justify-content: flex-start; }
+.scell .sname { margin-top: 12px; }
+.scell .sarr { z-index: 2; }
+
+/* ════ 4. PROGRAMME OVERVIEW ════ */
+#tours { background: var(--blk); padding: 0; }
+
+.prog-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.prog-intro-l {
+  padding: 56px 48px;
+  border-right: 1px solid rgba(255,255,255,.07);
+}
+.prog-eyebrow {
+  font-size: .64rem; text-transform: uppercase; letter-spacing: .2em;
+  font-weight: 700; color: rgba(255,255,255,.3); margin-bottom: 14px;
+}
+.prog-big-title {
+  font-family: var(--H);
+  font-size: clamp(3.5rem, 5.5vw, 5.2rem);
+  text-transform: uppercase; line-height: .88;
+  color: var(--wht); margin-bottom: 20px;
+}
+.prog-sub {
+  font-size: .86rem; color: rgba(255,255,255,.45);
+  line-height: 1.75; max-width: 360px; margin-bottom: 36px;
+}
+.prog-intro-r {
+  padding: 56px 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(255,255,255,.07);
+}
+.prog-stat {
+  background: var(--blk);
+  padding: 28px 24px;
+}
+.prog-stat-n {
+  font-family: var(--H); font-size: 2.8rem;
+  text-transform: uppercase; color: var(--wht);
+  line-height: 1; margin-bottom: 6px;
+}
+.prog-stat-l {
+  font-size: .72rem; color: rgba(255,255,255,.35);
+  text-transform: uppercase; letter-spacing: .1em; line-height: 1.5;
+}
+
+/* Programme boards — the two schedule images */
+.prog-boards { display: grid; grid-template-columns: 1fr 1fr; }
+
+.prog-board {
+  position: relative; overflow: hidden;
+  border-right: 1px solid rgba(255,255,255,.06);
+  background: #111;
+  display: flex; flex-direction: column;
+}
+.prog-board:last-child { border-right: none; }
+
+/* Top label bar */
+.prog-board-label {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(255,255,255,.04);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  flex-shrink: 0;
+}
+.prog-board-city {
+  display: flex; align-items: center; gap: 10px;
+}
+.prog-city-pill {
+  font-size: .63rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em;
+  padding: 5px 13px; border-radius: 2px;
+  color: var(--wht);
+}
+.prog-board:nth-child(1) .prog-city-pill { background: #1a4a7a; }
+.prog-board:nth-child(2) .prog-city-pill { background: #6b1a1a; }
+.prog-board-dates {
+  font-size: .68rem; color: rgba(255,255,255,.4);
+  font-weight: 500; letter-spacing: .06em;
+}
+.prog-board-toggle {
+  font-size: .66rem; color: rgba(255,255,255,.3);
+  cursor: pointer; display: flex; align-items: center; gap: 6px;
+  border: 1px solid rgba(255,255,255,.12); padding: 5px 12px;
+  transition: all .2s; background: transparent; font-family: var(--B);
+  color: rgba(255,255,255,.4);
+}
+.prog-board-toggle:hover { border-color: rgba(255,255,255,.3); color: var(--wht); }
+.prog-board.expanded .prog-board-toggle { border-color: rgba(255,255,255,.3); color: var(--wht); }
+
+/* Image container */
+.prog-board-img-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  /* Default: show top portion like a preview */
+  max-height: 460px;
+  transition: max-height .6s cubic-bezier(.4,0,.2,1);
+  cursor: pointer;
+}
+.prog-board.expanded .prog-board-img-wrap {
+  max-height: 2400px;
+}
+.prog-board-img-wrap img {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: top center;
+  transition: transform .4s ease;
+}
+.prog-board-img-wrap:hover img { transform: scale(1.005); }
+
+/* Fade mask at bottom — disappears when expanded */
+.prog-board-mask {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 100px;
+  background: linear-gradient(to top, #111 0%, transparent 100%);
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+.prog-board.expanded .prog-board-mask { opacity: 0; }
+
+/* Bottom activity strip */
+.prog-board-footer {
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding: 18px 24px;
+  background: rgba(255,255,255,.025);
+  flex-shrink: 0;
+}
+.prog-activities {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.prog-act {
+  font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.45);
+  transition: all .2s;
+}
+.prog-board:hover .prog-act { border-color: rgba(255,255,255,.18); color: rgba(255,255,255,.65); }
+
+@media(max-width:860px) {
+  .prog-intro { grid-template-columns: 1fr; }
+  .prog-intro-l { border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); }
+  .prog-boards { grid-template-columns: 1fr; }
+  .prog-board { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+}
+
+/* ════ 5. ITINERARY ════ */
+#itin { background: var(--sky); padding: 0; }
+.itin-body { display: grid; grid-template-columns: 300px 1fr; min-height: 84vh; }
+.itin-l { padding: 48px 28px; border-right: 1px solid rgba(14,14,14,.1); display: flex; flex-direction: column; }
+.itin-gtabs { display: flex; gap: 0; margin-top: 24px; border: 1.5px solid rgba(14,14,14,.15); width: fit-content; }
+.igtab { padding: 9px 22px; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; cursor: pointer; background: transparent; border: none; font-family: var(--B); transition: all .2s; color: rgba(14,14,14,.38); }
+.igtab.on { background: var(--blk); color: var(--wht); }
+.hotel-list { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+.hbadge { padding: 12px 14px; background: rgba(14,14,14,.06); border-left: 3px solid var(--blk); }
+.hbdates { font-size: .62rem; text-transform: uppercase; letter-spacing: .12em; opacity: .45; margin-bottom: 3px; }
+.hbname { font-size: .85rem; font-weight: 600; }
+.itin-r { padding: 40px 32px; overflow-y: auto; max-height: 84vh; }
+.dblock { margin-bottom: 30px; }
+.dtitle { font-family: var(--H); font-size: 1.7rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 12px; padding-bottom: 9px; border-bottom: 1.5px solid rgba(14,14,14,.12); display: flex; align-items: center; justify-content: space-between; }
+.dtag { font-family: var(--B); font-size: .61rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; background: var(--blk); color: var(--wht); padding: 4px 9px; }
+.ditems { display: flex; flex-direction: column; gap: 5px; }
+.ditem { display: flex; align-items: flex-start; gap: 12px; padding: 11px 14px; background: rgba(255,255,255,.48); border-left: 3px solid transparent; transition: all .2s; }
+.ditem:hover { border-left-color: var(--blk); background: rgba(255,255,255,.72); }
+.ditem.k { background: rgba(14,14,14,.06); border-left-color: var(--blk); }
+.ddot { width: 7px; height: 7px; border-radius: 50%; background: rgba(14,14,14,.18); flex-shrink: 0; margin-top: 5px; }
+.ditem.k .ddot { background: var(--blk); }
+.dtxt { font-size: .83rem; line-height: 1.5; color: rgba(14,14,14,.72); }
+.ditem.k .dtxt { color: var(--blk); font-weight: 500; }
+
+/* ════ 6. KNOW YOUR PLACES ════ */
+#places { background: var(--wht); padding: 0; }
+.places-hdr { padding: 48px 36px 24px; }
+.places-sub { font-size: .84rem; color: rgba(14,14,14,.5); max-width: 360px; margin-top: 8px; }
+.pgrid { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid rgba(14,14,14,.09); }
+.pcard { border-right: 1px solid rgba(14,14,14,.09); overflow: hidden; cursor: pointer; transition: background .2s; display: flex; flex-direction: column; }
+.pcard:nth-child(3n) { border-right: none; }
+.pcard:nth-child(n+4) { border-top: 1px solid rgba(14,14,14,.09); }
+.pcard:hover { background: rgba(14,14,14,.015); }
+.pimg { height: 210px; width: 100%; background-size: cover; background-position: center; transition: transform .4s ease; display: block; }
+.pcard:hover .pimg { transform: scale(1.04); }
+.pbody { padding: 22px 26px 28px; border-top: 1px solid rgba(14,14,14,.07); }
+.ptag { font-size: .6rem; text-transform: uppercase; letter-spacing: .14em; font-weight: 700; color: rgba(14,14,14,.32); margin-bottom: 7px; }
+.pname { font-family: var(--H); font-size: 1.9rem; text-transform: uppercase; line-height: .93; margin-bottom: 9px; }
+.psig { font-size: .77rem; color: rgba(14,14,14,.52); line-height: 1.6; }
+.pcta { display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; font-size: .72rem; font-weight: 600; color: var(--blk); text-decoration: none; opacity: .55; transition: opacity .2s; }
+.pcard:hover .pcta { opacity: 1; }
+
+
+
+/* ════ 8. REGISTRATION ════ */
+#reg { background: var(--cream); padding: 80px 36px; }
+.reg-inner { max-width: 740px; margin: 0 auto; }
+.reg-sub { font-size: .86rem; color: rgba(14,14,14,.52); line-height: 1.7; margin: 14px 0 44px; max-width: 460px; }
+.rform { background: var(--wht); padding: 44px; display: flex; flex-direction: column; gap: 18px; }
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.fg { display: flex; flex-direction: column; gap: 6px; }
+.fg label { font-size: .63rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; color: rgba(14,14,14,.4); }
+.fg input, .fg select { background: transparent; border: none; border-bottom: 1.5px solid rgba(14,14,14,.13); padding: 9px 0; font-size: .88rem; font-family: var(--B); color: var(--blk); outline: none; transition: border-color .2s; width: 100%; }
+.fg input:focus, .fg select:focus { border-bottom-color: var(--blk); }
+.fg input::placeholder { color: rgba(14,14,14,.22); }
+.fg select option { background: var(--wht); }
+.fsub { background: var(--blk); color: var(--wht); padding: 16px 36px; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; border: none; cursor: pointer; align-self: flex-start; transition: opacity .2s; }
+.fsub:hover { opacity: .82; }
+
+/* FOOTER */
+footer { background: var(--blk); padding: 44px 36px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.fbrand { font-family: var(--H); font-size: 1rem; text-transform: uppercase; color: var(--wht); letter-spacing: .05em; display: flex; align-items: center; gap: 3px; }
+.fbrand sup { font-size: .42rem; }
+.fmeta { font-size: .72rem; color: rgba(255,255,255,.28); text-align: center; line-height: 1.6; }
+.ftags { display: flex; gap: 9px; }
+.ftag { font-size: .6rem; text-transform: uppercase; letter-spacing: .1em; padding: 4px 11px; border: 1px solid rgba(255,255,255,.13); color: rgba(255,255,255,.32); }
+
+/* ANIMATIONS */
+@keyframes fuAnim { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.fu { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.fu.vis { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media(max-width:960px) {
+  .dest-body,.svc-body,.itin-body,.gami-body { grid-template-columns: 1fr; }
+  .pgrid { grid-template-columns: 1fr 1fr; }
+  .svc-r { grid-template-columns: 1fr; }
+  .tcard { flex: 0 0 260px; }
+  .frow { grid-template-columns: 1fr; }
+}
+@media(max-width:640px) {
+  .nav-cols,.nav-pill { display: none; }
+  .hero-giant { font-size: 4.5rem; }
+  .hero-stats { grid-template-columns: 1fr; }
+  .hero-right-box { min-width: unset; }
+  .pgrid { grid-template-columns: 1fr; }
+  .gami-body { grid-template-columns: 1fr; }
+  .page-nav { padding: 14px 20px; }
+  #reg { padding: 48px 20px; }
+  .rform { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ 1. HERO ══════════ -->
+<section id="hero">
+  <nav class="page-nav dark">
+    <div class="brand" style="color:var(--wht);">ABM 2026 <sup>®</sup></div>
+    <div class="nav-cols">
+      <div class="nav-col"><a href="#dest">Destinations</a><a href="#services">Services</a><a href="#tours">Groups</a><a href="#about">About</a></div>
+      <div class="nav-col"><a href="#itin">Itinerary</a><a href="#places">Places</a><a href="#reg">Register</a></div>
+    </div>
+    <div class="nav-r"><button class="nav-pill dark">May 2026 ▾</button><div class="nav-ham"><span></span><span></span></div></div>
+  </nav>
+
+  <div class="hero-photo">
+    <div class="hero-giant">ANNUAL<br>BUSINESS<br>MEET</div>
+  </div>
+
+  <div class="hero-sub-row">
+    <div class="hero-left-caption">
+      <p>Travel with confidence to Macau &amp; Hong Kong for the Annual Business Meet 2026 — your guide to breathtaking destinations, thrilling adventures, and unforgettable memories.</p>
+      <p>From the glittering Venetian Macau to the iconic skyline of Kowloon — discover the world like never before.</p>
+    </div>
+    <div class="hero-right-box">
+      <p>Choose your destination, preferred travel style, and dates – we'll take care of the rest.</p>
+      <small>Our dedicated programme ensures every detail is tailored to your needs, whether you're in Group 1 or Group 2 for ABM 2026.</small>
+      <a href="#itin" class="hero-cta">Select a tour →</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n">1 OR MORE</div><div class="hstat-d">Travel with your family or alone — complete comfort and care throughout every leg of the journey.</div></div>
+    <div class="hstat"><div class="hstat-n">70+ HOURS</div><div class="hstat-d">Ocean Park, Ngong Ping Cable Car, Victoria Peak, Venetian Macau, Diamond Show and more.</div></div>
+    <div class="hstat"><div class="hstat-n">PRO TEAM</div><div class="hstat-d">A personalised guide is a unique chance to create the business trip of a lifetime.</div></div>
+  </div>
+</section>
+
+
+<!-- ══════════ 2. POPULAR DESTINATIONS ══════════ -->
+<section id="dest">
+  <nav class="page-nav light" style="background:var(--peach);">
+    <div class="brand">ABM 2026 <sup>®</sup></div>
+    <div class="nav-cols">
+      <div class="nav-col"><a href="#dest">Destinations</a><a href="#services">Services</a><a href="#tours">Groups</a></div>
+      <div class="nav-col"><a href="#itin">Itinerary</a><a href="#places">Places</a><a href="#reg">Register</a></div>
+    </div>
+    <div class="nav-r"><button class="nav-pill light">May 2026 ▾</button><div class="nav-ham"><span></span><span></span></div></div>
+  </nav>
+  <div class="dest-body">
+    <div class="dest-l">
+      <div>
+        <h2 class="sec-title fu">POPULAR<br>DESTINATIONS</h2>
+        <p class="dest-tag fu">Find your perfect adventure today.</p>
+        <p class="dest-sub fu">From breathtaking Venetian Macau to lush Hong Kong peaks and vibrant harbour cities — discover the world one destination at a time.</p>
+      </div>
+      <div>
+        <a href="#itin" class="btn-blk" style="margin-bottom:20px;">View full itinerary →</a>
+        <div class="ctrls">
+          <button class="cbtn" onclick="slideDest(-1)">←</button>
+          <span class="ccount" id="dc">1 / 4</span>
+          <button class="cbtn" onclick="slideDest(1)">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="dest-r">
+      <div class="dcards" id="dcards">
+
+        <!-- Card 1: Venetian Macau -->
+        <div class="dcard">
+          <div class="dcard-bg" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/Venetian%20Macau.jpg');"></div>
+          <div class="dcard-ov"></div>
+          <div class="dcard-body">
+            <span class="dcard-loc">Macau, China</span>
+            <div class="dcard-rat">★ 4.9</div>
+            <div class="dcard-name">Venetian<br>Macau</div>
+            <div class="dcard-desc">Home to the ABM 2026 Grand Ball Room, Gala Dinner &amp; Award Function. The centrepiece of the entire event.</div>
+            <a class="dcard-link" href="#itin">View tour →</a>
+          </div>
+        </div>
+
+        <!-- Card 2: Harbour Grand Kowloon -->
+        <div class="dcard">
+          <div class="dcard-bg" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/Group%202-Harbour%20Grand%20Kowloon%2C%20Hong%20Kong%201.png');"></div>
+          <div class="dcard-ov"></div>
+          <div class="dcard-body">
+            <span class="dcard-loc">Kowloon, Hong Kong</span>
+            <div class="dcard-rat">★ 4.8</div>
+            <div class="dcard-name">Harbour Grand<br>Kowloon</div>
+            <div class="dcard-desc">Premium accommodation for Groups 1 &amp; 2 with breathtaking harbour views and world-class service.</div>
+            <a class="dcard-link" href="#itin">View tour →</a>
+          </div>
+        </div>
+
+        <!-- Card 3: Ocean Park -->
+        <div class="dcard">
+          <div class="dcard-bg" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/HONGKONG%20OCEAN%20PARK%20(FULL%20DAY).jpg');"></div>
+          <div class="dcard-ov"></div>
+          <div class="dcard-body">
+            <span class="dcard-loc">Hong Kong Island</span>
+            <div class="dcard-rat">★ 4.7</div>
+            <div class="dcard-name">Ocean Park<br>Hong Kong</div>
+            <div class="dcard-desc">Full-day adventure including buffet lunch and spectacular evening fireworks over Hong Kong harbour.</div>
+            <a class="dcard-link" href="#itin">View tour →</a>
+          </div>
+        </div>
+
+        <!-- Card 4: Victoria Peak + Ferry -->
+        <div class="dcard">
+          <div class="dcard-bg" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/HONG%20KONG%20-%20CITY%20TOUR%20%2B%20VICTORIA%20PEAK%20FERRY%20TO%20MACAU.jpg');"></div>
+          <div class="dcard-ov"></div>
+          <div class="dcard-body">
+            <span class="dcard-loc">The Peak, Hong Kong</span>
+            <div class="dcard-rat">★ 4.9</div>
+            <div class="dcard-name">Victoria Peak<br>&amp; Ferry to Macau</div>
+            <div class="dcard-desc">Panoramic city views from The Peak then the iconic ferry crossing from Hong Kong to Macau.</div>
+            <a class="dcard-link" href="#itin">View tour →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ 3. SERVICES ══════════ -->
+<section id="services">
+  <nav class="page-nav light" style="background:var(--pink);">
+    <div class="brand">ABM 2026 <sup>®</sup></div>
+    <div class="nav-cols">
+      <div class="nav-col"><a href="#dest">Destinations</a><a href="#services">Services</a><a href="#tours">Groups</a></div>
+      <div class="nav-col"><a href="#itin">Itinerary</a><a href="#places">Places</a><a href="#reg">Register</a></div>
+    </div>
+    <div class="nav-r"><button class="nav-pill light">May 2026 ▾</button><div class="nav-ham"><span></span><span></span></div></div>
+  </nav>
+  <div class="svc-body">
+    <div class="svc-l">
+      <div>
+        <h2 class="sec-title fu">OUR<br>SERVICES</h2>
+        <p class="svc-desc fu">From the moment you arrive in Hong Kong to the end of your journey in Macau, we offer reliable services designed to make your travel smooth, safe, and unforgettable.</p>
+      </div>
+      <a href="#reg" class="btn-blk">View all services →</a>
+    </div>
+    <div class="svc-r">
+
+      <!-- Airport Pickup → Arrival / Ngong Ping image -->
+      <div class="scell">
+        <div class="sarr">↗</div>
+        <div class="scell-img" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/HONGKONG-ARRIVAL%20NGONG%20PING%20CABLE%20CAR.jpg');"></div>
+        <div class="sname">AIRPORT<br>PICKUP</div>
+        <div class="sdesc">Pickup and transfer from Hong Kong International Airport to your hotel — smooth, coordinated, and stress-free from the first moment.</div>
+      </div>
+
+      <!-- Easy Booking → ABM event cover image -->
+      <div class="scell">
+        <div class="sarr">↗</div>
+        <div class="scell-img" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/Annual%20Business%20Meet%20Macau%20%E2%80%93%20Hongkong%20China.jpg');"></div>
+        <div class="sname">EASY<br>BOOKING</div>
+        <div class="sdesc">Quick and easy booking for all tours, activities, and transfers — pre-arranged for all ABM 2026 dates across both groups.</div>
+      </div>
+
+      <!-- Ferry Transfer → Ferry image -->
+      <div class="scell">
+        <div class="sarr">↗</div>
+        <div class="scell-img" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/Hong%20Kong%20to%20Macau%20by%20Ferry.png');"></div>
+        <div class="sname">FERRY &amp;<br>BUS TRANSFER</div>
+        <div class="sdesc">Seamless cross-border transfers by ferry and coach between Hong Kong and Macau — full schedule coordinated for both groups.</div>
+      </div>
+
+      <!-- Gala Awards → Macau Meeting / Gala image -->
+      <div class="scell">
+        <div class="sarr">↗</div>
+        <div class="scell-img" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/MACAU%20-%20MEETING%20(FULL%20DAY).jpg');"></div>
+        <div class="sname">GALA<br>AWARDS</div>
+        <div class="sdesc">The Evening Gala Dinner and Award Function at the Venetian Grand Ball Room — recognising performance and celebrating excellence.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ 4. PROGRAMME OVERVIEW ══════════ -->
+<section id="tours">
+  <nav class="page-nav" style="background:var(--blk); border-color:rgba(255,255,255,.07);">
+    <div class="brand" style="color:var(--wht);">ABM 2026 <sup>®</sup></div>
+    <div class="nav-cols">
+      <div class="nav-col"><a href="#dest" style="color:rgba(255,255,255,.6);">Destinations</a><a href="#services" style="color:rgba(255,255,255,.6);">Services</a><a href="#tours" style="color:rgba(255,255,255,.6);">Programme</a></div>
+      <div class="nav-col"><a href="#itin" style="color:rgba(255,255,255,.6);">Itinerary</a><a href="#places" style="color:rgba(255,255,255,.6);">Places</a><a href="#reg" style="color:rgba(255,255,255,.6);">Register</a></div>
+    </div>
+    <div class="nav-r">
+      <button class="nav-pill dark">May 2026 ▾</button>
+      <div class="nav-ham"><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <!-- Intro strip -->
+  <div class="prog-intro">
+    <div class="prog-intro-l">
+      <p class="prog-eyebrow">Full Programme · ABM 2026</p>
+      <h2 class="prog-big-title fu">PROGRAMME<br>OVERVIEW</h2>
+      <p class="prog-sub">Two cities. Two groups. Every day mapped out. These are the complete visual schedules for the Hong Kong and Macau legs of ABM 2026 — click any board to expand the full programme.</p>
+      <a href="#itin" class="btn-blk" style="background:var(--wht);color:var(--blk);">View detailed itinerary →</a>
+    </div>
+    <div class="prog-intro-r">
+      <div class="prog-stat">
+        <div class="prog-stat-n">5 DAYS</div>
+        <div class="prog-stat-l">Full programme<br>per group</div>
+      </div>
+      <div class="prog-stat">
+        <div class="prog-stat-n">2 CITIES</div>
+        <div class="prog-stat-l">Hong Kong<br>+ Macau</div>
+      </div>
+      <div class="prog-stat">
+        <div class="prog-stat-n">2 GROUPS</div>
+        <div class="prog-stat-l">Staggered<br>8–14 May</div>
+      </div>
+      <div class="prog-stat">
+        <div class="prog-stat-n">1 GALA</div>
+        <div class="prog-stat-l">Venetian Grand<br>Ball Room</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The two schedule image boards -->
+  <div class="prog-boards">
+
+    <!-- Board 1: Hong Kong -->
+    <div class="prog-board" id="board-hk">
+      <div class="prog-board-label">
+        <div class="prog-board-city">
+          <span class="prog-city-pill">Hong Kong</span>
+          <span class="prog-board-dates">Days 1–3 of Programme</span>
+        </div>
+        <button class="prog-board-toggle" onclick="toggleBoard('board-hk', this)">
+          Expand ↕
+        </button>
+      </div>
+
+      <div class="prog-board-img-wrap" onclick="toggleBoard('board-hk', this.closest('.prog-board').querySelector('.prog-board-toggle'))">
+        <img
+          src="https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/HONGKONG-ARRIVAL%20NGONG%20PING%20CABLE%20CAR%20and%20HONGKONG%20OCEAN%20PARK%20(FULL%20DAY)%20and%20HONG%20KONG%20-%20CITY%20TOUR%20%2B%20VICTORIA%20PEAK%20FERRY%20TO%20MACAU.png"
+          alt="Hong Kong Programme — Ngong Ping Cable Car, Ocean Park Full Day, City Tour, Victoria Peak, Ferry to Macau"
+          loading="lazy"
+        >
+        <div class="prog-board-mask"></div>
+      </div>
+
+      <div class="prog-board-footer">
+        <div class="prog-activities">
+          <span class="prog-act">🚡 Ngong Ping Cable Car</span>
+          <span class="prog-act">🎡 Ocean Park Full Day</span>
+          <span class="prog-act">🎆 Evening Fireworks</span>
+          <span class="prog-act">🗼 Victoria Peak</span>
+          <span class="prog-act">🎭 Madame Tussauds</span>
+          <span class="prog-act">⛴️ Ferry to Macau</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Board 2: Macau -->
+    <div class="prog-board" id="board-mc">
+      <div class="prog-board-label">
+        <div class="prog-board-city">
+          <span class="prog-city-pill">Macau</span>
+          <span class="prog-board-dates">Days 3–5 of Programme</span>
+        </div>
+        <button class="prog-board-toggle" onclick="toggleBoard('board-mc', this)">
+          Expand ↕
+        </button>
+      </div>
+
+      <div class="prog-board-img-wrap" onclick="toggleBoard('board-mc', this.closest('.prog-board').querySelector('.prog-board-toggle'))">
+        <img
+          src="https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/MACAU%20-%20MEETING%20(FULL%20DAY)%20and%20MACAU%20-%20CITY%20TOUR%20SHOPPING%20-%20DEPARTURE.png"
+          alt="Macau Programme — Full Day Meeting, Gala Dinner & Awards, City Tour, Shopping, Departure"
+          loading="lazy"
+        >
+        <div class="prog-board-mask"></div>
+      </div>
+
+      <div class="prog-board-footer">
+        <div class="prog-activities">
+          <span class="prog-act">💎 Diamond Show</span>
+          <span class="prog-act">🗼 Eiffel Tower View</span>
+          <span class="prog-act">🎤 Full Day Conference</span>
+          <span class="prog-act">🏆 Gala Dinner &amp; Awards</span>
+          <span class="prog-act">🗺️ City Tour</span>
+          <span class="prog-act">✈️ Departure</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════ 5. ITINERARY ══════════ -->
+<section id="itin">
+  <nav class="page-nav light" style="background:var(--sky);">
+    <div class="brand">ABM 2026 <sup>®</sup></div>
+    <div class="nav-cols">
+      <div class="nav-col"><a href="#dest">Destinations</a><a href="#services">Services</a></div>
+      <div class="nav-col"><a href="#itin">Itinerary</a><a href="#reg">Register</a></div>
+    </div>
+    <div class="nav-r"><button class="nav-pill light">May 2026 ▾</button><div class="nav-ham"><span></span><span></span></div></div>
+  </nav>
+  <div class="itin-body">
+    <div class="itin-l">
+      <h2 class="sec-title fu" style="font-size:clamp(3rem,4.8vw,4.5rem);">FULL<br>ITINERARY</h2>
+      <p style="font-size:.8rem;color:rgba(14,14,14,.52);line-height:1.65;margin-top:10px;">Day-by-day schedule for both groups. Select to view your programme.</p>
+      <div class="itin-gtabs">
+        <button class="igtab on" onclick="swGrp('g1',this)">Group 1</button>
+        <button class="igtab" onclick="swGrp('g2',this)">Group 2</button>
+      </div>
+      <div id="g1b" class="hotel-list">
+        <div class="hbadge"><div class="hbdates">08 – 10 May</div><div class="hbname">Harbour Grand Kowloon, HK</div></div>
+        <div class="hbadge"><div class="hbdates">10 – 12 May</div><div class="hbname">Venetian Macau</div></div>
+      </div>
+      <div id="g2b" class="hotel-list" style="display:none;">
+        <div class="hbadge"><div class="hbdates">10 – 12 May</div><div class="hbname">Venetian Macau</div></div>
+        <div class="hbadge"><div class="hbdates">12 – 14 May</div><div class="hbname">Harbour Grand Kowloon, HK</div></div>
+      </div>
+    </div>
+    <div class="itin-r">
+
+      <!-- GROUP 1 -->
+      <div id="g1-itin">
+        <div class="dblock"><div class="dtitle">DAY 1 <span class="dtag">8 May · Hong Kong</span></div><div class="ditems"><div class="ditem"><div class="ddot"></div><div class="dtxt">Arrival into Hong Kong Airport + Freshen up at HKIA</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Early lunch at Four Points by Sheraton, Tung Chung (Near Airport)</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🚡 NP 360 – Ngong Ping Cable Car (Normal Car)</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🏨 Check-in: Harbour Grand Kowloon</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Evening free time · Dinner at Indian Restaurant</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🌙 Overnight Stay: Harbour Grand Kowloon</div></div></div></div>
+        <div class="dblock"><div class="dtitle">DAY 2 <span class="dtag">9 May · Hong Kong</span></div><div class="ditems"><div class="ditem"><div class="ddot"></div><div class="dtxt">Breakfast at the hotel</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🎡 Full day trip to Ocean Park</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">🍱 Buffet Lunch at Ocean Park</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🎆 Evening Fireworks at Ocean Park</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Dinner at Indian Restaurant</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🌙 Overnight Stay: Harbour Grand Kowloon</div></div></div></div>
+        <div class="dblock"><div class="dtitle">DAY 3 <span class="dtag">10 May · HK → Macau</span></div><div class="ditems"><div class="ditem"><div class="ddot"></div><div class="dtxt">After breakfast, check out &amp; Hong Kong City Tour</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🗼 Victoria Peak &amp; Madame Tussauds</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Lunch at Indian Restaurant · Transfer to Hong Kong Pier</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">⛴️ Hong Kong to Macau by Ferry</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">✨ Macau Tour: Diamond Show, Eiffel Tower View, Big Bang, Fountain Show</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Dinner at Indian Restaurant</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🌙 Overnight Stay: Venetian Macau</div></div></div></div>
+        <div class="dblock"><div class="dtitle">DAY 4 <span class="dtag">11 May · Conference Day</span></div><div class="ditems"><div class="ditem k"><div class="ddot"></div><div class="dtxt">🎤 Full Day Meeting — Venetian Grand Ball Room</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Lunch at Venetian Grand Ball Room</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🏆 Evening Gala Dinner &amp; Award Function at Venetian</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🌙 Overnight Stay: Venetian Macau</div></div></div></div>
+        <div class="dblock"><div class="dtitle">DAY 5 <span class="dtag">12 May · Departure</span></div><div class="ditems"><div class="ditem k"><div class="ddot"></div><div class="dtxt">🗺️ Check out + City Tour of Macau</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Lunch at Macau Tower</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Macau Immigration → Bus to Hong Kong International Airport</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">✈️ Check-in &amp; Fly back to India — Tour Ends</div></div></div></div>
+      </div>
+
+      <!-- GROUP 2 -->
+      <div id="g2-itin" style="display:none;">
+        <div class="dblock"><div class="dtitle">DAY 1 <span class="dtag">10 May · HK → Macau</span></div><div class="ditems"><div class="ditem"><div class="ddot"></div><div class="dtxt">Arrive Hong Kong Airport · Freshen up at HKIA</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Early lunch at Four Points by Sheraton, Tung Chung (Near Airport)</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🚌 Hong Kong to Macau by Bus</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">✨ Macau Tour: Diamond Show, Eiffel Tower View, Big Bang, Fountain Show</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Dinner at Indian Restaurant</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🌙 Overnight Stay: Venetian Macau</div></div></div></div>
+        <div class="dblock"><div class="dtitle">DAY 2 <span class="dtag">11 May · Conference Day</span></div><div class="ditems"><div class="ditem k"><div class="ddot"></div><div class="dtxt">🎤 Full Day Meeting — Venetian Grand Ball Room</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Lunch at Venetian Grand Ball Room</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🏆 Evening Gala Dinner &amp; Award Function at Venetian</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🌙 Overnight Stay: Venetian Macau</div></div></div></div>
+        <div class="dblock"><div class="dtitle">DAY 3 <span class="dtag">12 May · Macau → HK</span></div><div class="ditems"><div class="ditem k"><div class="ddot"></div><div class="dtxt">🗺️ Check out + City Tour of Macau</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Lunch at Macau Tower · Transfer to Macau Pier</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🏨 Check-in: Harbour Grand Kowloon, Hong Kong</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🗼 Evening — Victoria Peak &amp; Madame Tussauds</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🌙 Overnight Stay: Harbour Grand Kowloon</div></div></div></div>
+        <div class="dblock"><div class="dtitle">DAY 4 <span class="dtag">13 May · Hong Kong</span></div><div class="ditems"><div class="ditem k"><div class="ddot"></div><div class="dtxt">🎡 Full day trip to Ocean Park</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">🍱 Buffet Lunch at Ocean Park · 🎆 Evening Fireworks</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Dinner at Indian Restaurant</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">🌙 Overnight Stay: Harbour Grand Kowloon</div></div></div></div>
+        <div class="dblock"><div class="dtitle">DAY 5 <span class="dtag">14 May · Departure</span></div><div class="ditems"><div class="ditem k"><div class="ddot"></div><div class="dtxt">🚡 NP 360 – Ngong Ping Cable Car (Normal Car)</div></div><div class="ditem"><div class="ddot"></div><div class="dtxt">Lunch at Indian Restaurant · Evening drop at Airport</div></div><div class="ditem k"><div class="ddot"></div><div class="dtxt">✈️ Fly back to India — Tour Ends</div></div></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ 6. KNOW YOUR PLACES ══════════ -->
+<section id="places">
+  <nav class="page-nav light">
+    <div class="brand">ABM 2026 <sup>®</sup></div>
+    <div class="nav-cols">
+      <div class="nav-col"><a href="#dest">Destinations</a><a href="#services">Services</a></div>
+      <div class="nav-col"><a href="#itin">Itinerary</a><a href="#reg">Register</a></div>
+    </div>
+    <div class="nav-r"><button class="nav-pill light">May 2026 ▾</button><div class="nav-ham"><span></span><span></span></div></div>
+  </nav>
+  <div class="places-hdr">
+    <h2 class="sec-title fu">KNOW YOUR<br>PLACES</h2>
+    <p class="places-sub fu">Every destination that awaits you at ABM 2026 — from Hong Kong harbour to the grandeur of Macau.</p>
+  </div>
+  <div class="pgrid">
+
+    <!-- 1: Four Points by Sheraton -->
+    <div class="pcard">
+      <div class="pimg" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/HOTEL%20-%20Four%20Points%20by%20Sheraton%20Hong%20Kong%201.png');"></div>
+      <div class="pbody">
+        <div class="ptag">Hotel · Tung Chung, Hong Kong</div>
+        <div class="pname">Four Points by Sheraton</div>
+        <div class="psig">Lunch post-arrival near Hong Kong Airport — the perfect first stop before heading into the city.</div>
+        <a class="pcta" href="#itin">View in itinerary →</a>
+      </div>
+    </div>
+
+    <!-- 2: Ocean Park -->
+    <div class="pcard">
+      <div class="pimg" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/Ocean%20Park.png');"></div>
+      <div class="pbody">
+        <div class="ptag">Theme Park · Hong Kong Island</div>
+        <div class="pname">Ocean Park</div>
+        <div class="psig">Trip to Ocean Park — buffet lunch and a spectacular evening fireworks display. Significance: Full Day Trip.</div>
+        <a class="pcta" href="#itin">View in itinerary →</a>
+      </div>
+    </div>
+
+    <!-- 3: Hong Kong City Tour -->
+    <div class="pcard">
+      <div class="pimg" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/Hong%20Kong%20City%20tour%201.png');"></div>
+      <div class="pbody">
+        <div class="ptag">City Tour · The Peak, Hong Kong</div>
+        <div class="pname">Victoria Peak &amp; Madame Tussauds</div>
+        <div class="psig">Touring Victoria Peak for panoramic views of the iconic skyline, plus Madame Tussauds wax museum.</div>
+        <a class="pcta" href="#itin">View in itinerary →</a>
+      </div>
+    </div>
+
+    <!-- 4: Ferry to Macau -->
+    <div class="pcard">
+      <div class="pimg" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/Hong%20Kong%20to%20Macau%20by%20Ferry.png');"></div>
+      <div class="pbody">
+        <div class="ptag">Transfer · HK → Macau</div>
+        <div class="pname">HK to Macau by Ferry</div>
+        <div class="psig">A scenic ferry crossing linking Hong Kong Pier to Macau — the maritime bridge between two iconic cities.</div>
+        <a class="pcta" href="#itin">View in itinerary →</a>
+      </div>
+    </div>
+
+    <!-- 5: Macau Tour -->
+    <div class="pcard">
+      <div class="pimg" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/Macau%20tour%201.png');"></div>
+      <div class="pbody">
+        <div class="ptag">Entertainment · Macau</div>
+        <div class="pname">Macau Grand Tour</div>
+        <div class="psig">Witnessing the Diamond Show, Eiffel Tower View, Big Bang light show &amp; the spectacular fountain show.</div>
+        <a class="pcta" href="#itin">View in itinerary →</a>
+      </div>
+    </div>
+
+    <!-- 6: Macau City Tour -->
+    <div class="pcard">
+      <div class="pimg" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/Macau%20City%20tour.png');"></div>
+      <div class="pbody">
+        <div class="ptag">City Tour · Macau</div>
+        <div class="pname">Macau Tower &amp; City Tour</div>
+        <div class="psig">Touring Macau Tower with a memorable lunch, followed by the finest landmarks of this vibrant destination.</div>
+        <a class="pcta" href="#itin">View in itinerary →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<!-- ══════════ 8. REGISTRATION ══════════ -->
+<section id="reg">
+  <nav class="page-nav light" style="background:var(--cream);">
+    <div class="brand">ABM 2026 <sup>®</sup></div>
+    <div class="nav-cols">
+      <div class="nav-col"><a href="#dest">Destinations</a><a href="#services">Services</a></div>
+      <div class="nav-col"><a href="#itin">Itinerary</a><a href="#reg">Register</a></div>
+    </div>
+    <div class="nav-r"><button class="nav-pill light">May 2026 ▾</button><div class="nav-ham"><span></span><span></span></div></div>
+  </nav>
+  <div style="padding:64px 36px 80px;">
+    <div class="reg-inner">
+      <h2 class="sec-title fu">REGISTER<br>FOR ABM 2026</h2>
+      <p class="reg-sub">Secure your place at the Annual Business Meet 2026 in Macau &amp; Hong Kong. Complete the form and our team will confirm your group allocation and all travel details.</p>
+      <div class="rform">
+        <div class="frow">
+          <div class="fg"><label>Full Name</label><input type="text" placeholder="Your full name"></div>
+          <div class="fg"><label>Employee ID</label><input type="text" placeholder="Your employee ID"></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Department</label><input type="text" placeholder="Your department"></div>
+          <div class="fg"><label>Travel Group</label><select><option value="">Select your group</option><option>Group 1 – 8th to 12th May</option><option>Group 2 – 10th to 14th May</option></select></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Email Address</label><input type="email" placeholder="you@coromandel.com"></div>
+          <div class="fg"><label>Mobile Number</label><input type="tel" placeholder="+91 XXXXXXXXXX"></div>
+        </div>
+        <button class="fsub">Submit Registration →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="fbrand">ABM 2026 <sup>®</sup></div>
+  <div class="fmeta">
+    Annual Business Meet 2026 · Macau – Hong Kong, China · 8–14 May 2026<br>
+    Coromandel International Limited · "Consolidate to Accelerate"
+  </div>
+  <div class="ftags"><span class="ftag">Coromandel</span><span class="ftag">May 2026</span></div>
+</footer>
+
+<script>
+const BASE = 'https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/';
+
+// Programme board expand/collapse
+function toggleBoard(id, btn) {
+  const board = document.getElementById(id);
+  const isExpanded = board.classList.toggle('expanded');
+  btn.textContent = isExpanded ? 'Collapse ↑' : 'Expand ↕';
+}
+
+// Destination slider
+let di = 0;
+function slideDest(d) {
+  const c = document.getElementById('dcards');
+  di = Math.max(0, Math.min(3, di + d));
+  c.style.transform = `translateX(-${di * 320}px)`;
+  document.getElementById('dc').textContent = `${di + 1} / 4`;
+}
+
+
+
+// Itinerary group toggle
+function swGrp(g, btn) {
+  document.querySelectorAll('.igtab').forEach(x => x.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('g1-itin').style.display = g === 'g1' ? 'block' : 'none';
+  document.getElementById('g2-itin').style.display = g === 'g2' ? 'block' : 'none';
+  document.getElementById('g1b').style.display = g === 'g1' ? 'flex' : 'none';
+  document.getElementById('g2b').style.display = g === 'g2' ? 'flex' : 'none';
+}
+
+// Scroll fade-up
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fu').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 :root {
