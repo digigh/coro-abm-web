@@ -120,26 +120,150 @@ body { font-family: var(--B); background: var(--wht); color: var(--blk); overflo
 .sdesc { font-size: .77rem; color: rgba(14,14,14,.52); line-height: 1.6; }
 .scell-img { width: 100%; height: 170px; object-fit: cover; background-size: cover; background-position: center; margin-bottom: 14px; }
 
-/* ════ 4. TOURS / GROUPS ════ */
-#tours { background: var(--cream); padding: 0; }
-.tour-hdr { padding: 44px 36px 0; display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-.tour-tabs-row { display: flex; gap: 28px; }
-.ttab { font-size: .84rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; cursor: pointer; background: none; border: none; border-bottom: 2px solid transparent; padding-bottom: 4px; font-family: var(--B); color: rgba(14,14,14,.32); transition: all .2s; }
-.ttab.on { color: var(--blk); border-bottom-color: var(--blk); }
-.tour-cards-wrap { padding: 26px 36px 0; overflow: hidden; }
-.tcards { display: flex; gap: 14px; transition: transform .4s ease; }
-.tcard { flex: 0 0 calc(25% - 11px); border: 2px solid transparent; cursor: pointer; position: relative; transition: border-color .2s; }
-.tcard.on { border-color: var(--blk); }
-.tcard-n { position: absolute; top: 12px; left: 12px; z-index: 2; font-size: .73rem; font-weight: 700; color: var(--wht); background: rgba(14,14,14,.45); padding: 2px 8px; }
-.tcard-img { height: 250px; width: 100%; display: block; background-size: cover; background-position: center; filter: grayscale(25%); transition: filter .3s; }
-.tcard.on .tcard-img { filter: none; }
-.tcard-foot { padding: 12px 4px; }
-.tcard-label { font-family: var(--H); font-size: 1.55rem; text-transform: uppercase; }
-.tcard-body { padding: 12px 4px; }
-.tcard-desc { font-size: .76rem; color: rgba(14,14,14,.62); line-height: 1.6; margin-bottom: 8px; }
-.tcard-link { display: none; font-size: .74rem; font-weight: 600; text-decoration: none; color: var(--blk); }
-.tcard.on .tcard-link { display: inline-flex; align-items: center; gap: 6px; }
-.tour-footer { padding: 26px 36px 44px; display: flex; align-items: center; gap: 18px; }
+/* ════ 4. PROGRAMME OVERVIEW ════ */
+#tours { background: var(--blk); padding: 0; }
+
+.prog-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.prog-intro-l {
+  padding: 56px 48px;
+  border-right: 1px solid rgba(255,255,255,.07);
+}
+.prog-eyebrow {
+  font-size: .64rem; text-transform: uppercase; letter-spacing: .2em;
+  font-weight: 700; color: rgba(255,255,255,.3); margin-bottom: 14px;
+}
+.prog-big-title {
+  font-family: var(--H);
+  font-size: clamp(3.5rem, 5.5vw, 5.2rem);
+  text-transform: uppercase; line-height: .88;
+  color: var(--wht); margin-bottom: 20px;
+}
+.prog-sub {
+  font-size: .86rem; color: rgba(255,255,255,.45);
+  line-height: 1.75; max-width: 360px; margin-bottom: 36px;
+}
+.prog-intro-r {
+  padding: 56px 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(255,255,255,.07);
+}
+.prog-stat {
+  background: var(--blk);
+  padding: 28px 24px;
+}
+.prog-stat-n {
+  font-family: var(--H); font-size: 2.8rem;
+  text-transform: uppercase; color: var(--wht);
+  line-height: 1; margin-bottom: 6px;
+}
+.prog-stat-l {
+  font-size: .72rem; color: rgba(255,255,255,.35);
+  text-transform: uppercase; letter-spacing: .1em; line-height: 1.5;
+}
+
+/* Programme boards — the two schedule images */
+.prog-boards { display: grid; grid-template-columns: 1fr 1fr; }
+
+.prog-board {
+  position: relative; overflow: hidden;
+  border-right: 1px solid rgba(255,255,255,.06);
+  background: #111;
+  display: flex; flex-direction: column;
+}
+.prog-board:last-child { border-right: none; }
+
+/* Top label bar */
+.prog-board-label {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(255,255,255,.04);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  flex-shrink: 0;
+}
+.prog-board-city {
+  display: flex; align-items: center; gap: 10px;
+}
+.prog-city-pill {
+  font-size: .63rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em;
+  padding: 5px 13px; border-radius: 2px;
+  color: var(--wht);
+}
+.prog-board:nth-child(1) .prog-city-pill { background: #1a4a7a; }
+.prog-board:nth-child(2) .prog-city-pill { background: #6b1a1a; }
+.prog-board-dates {
+  font-size: .68rem; color: rgba(255,255,255,.4);
+  font-weight: 500; letter-spacing: .06em;
+}
+.prog-board-toggle {
+  font-size: .66rem; color: rgba(255,255,255,.3);
+  cursor: pointer; display: flex; align-items: center; gap: 6px;
+  border: 1px solid rgba(255,255,255,.12); padding: 5px 12px;
+  transition: all .2s; background: transparent; font-family: var(--B);
+  color: rgba(255,255,255,.4);
+}
+.prog-board-toggle:hover { border-color: rgba(255,255,255,.3); color: var(--wht); }
+.prog-board.expanded .prog-board-toggle { border-color: rgba(255,255,255,.3); color: var(--wht); }
+
+/* Image container */
+.prog-board-img-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  /* Default: show top portion like a preview */
+  max-height: 460px;
+  transition: max-height .6s cubic-bezier(.4,0,.2,1);
+  cursor: pointer;
+}
+.prog-board.expanded .prog-board-img-wrap {
+  max-height: 2400px;
+}
+.prog-board-img-wrap img {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: top center;
+  transition: transform .4s ease;
+}
+.prog-board-img-wrap:hover img { transform: scale(1.005); }
+
+/* Fade mask at bottom — disappears when expanded */
+.prog-board-mask {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 100px;
+  background: linear-gradient(to top, #111 0%, transparent 100%);
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+.prog-board.expanded .prog-board-mask { opacity: 0; }
+
+/* Bottom activity strip */
+.prog-board-footer {
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding: 18px 24px;
+  background: rgba(255,255,255,.025);
+  flex-shrink: 0;
+}
+.prog-activities {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.prog-act {
+  font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.45);
+  transition: all .2s;
+}
+.prog-board:hover .prog-act { border-color: rgba(255,255,255,.18); color: rgba(255,255,255,.65); }
+
+@media(max-width:860px) {
+  .prog-intro { grid-template-columns: 1fr; }
+  .prog-intro-l { border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); }
+  .prog-boards { grid-template-columns: 1fr; }
+  .prog-board { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+}
 
 /* ════ 5. ITINERARY ════ */
 #itin { background: var(--sky); padding: 0; }
@@ -404,66 +528,117 @@ footer { background: var(--blk); padding: 44px 36px; display: flex; align-items:
 </section>
 
 
-<!-- ══════════ 4. GROUPS / TOURS ══════════ -->
-<section id="tours" id="about">
-  <nav class="page-nav light" style="background:var(--cream);">
-    <div class="brand">ABM 2026 <sup>®</sup></div>
+<!-- ══════════ 4. PROGRAMME OVERVIEW ══════════ -->
+<section id="tours">
+  <nav class="page-nav" style="background:var(--blk); border-color:rgba(255,255,255,.07);">
+    <div class="brand" style="color:var(--wht);">ABM 2026 <sup>®</sup></div>
     <div class="nav-cols">
-      <div class="nav-col"><a href="#dest">Destinations</a><a href="#services">Services</a><a href="#tours">Groups</a></div>
-      <div class="nav-col"><a href="#itin">Itinerary</a><a href="#places">Places</a><a href="#reg">Register</a></div>
+      <div class="nav-col"><a href="#dest" style="color:rgba(255,255,255,.6);">Destinations</a><a href="#services" style="color:rgba(255,255,255,.6);">Services</a><a href="#tours" style="color:rgba(255,255,255,.6);">Programme</a></div>
+      <div class="nav-col"><a href="#itin" style="color:rgba(255,255,255,.6);">Itinerary</a><a href="#places" style="color:rgba(255,255,255,.6);">Places</a><a href="#reg" style="color:rgba(255,255,255,.6);">Register</a></div>
     </div>
-    <div class="nav-r"><button class="nav-pill light">May 2026 ▾</button><div class="nav-ham"><span></span><span></span></div></div>
+    <div class="nav-r">
+      <button class="nav-pill dark">May 2026 ▾</button>
+      <div class="nav-ham"><span></span><span></span></div>
+    </div>
   </nav>
-  <div class="tour-hdr">
-    <h2 class="sec-title fu">ABM 2026 FOR</h2>
-    <div class="tour-tabs-row">
-      <button class="ttab on" onclick="setTTab(this)">Macau</button>
-      <button class="ttab" onclick="setTTab(this)">Hong Kong</button>
-      <button class="ttab" onclick="setTTab(this)">Gala Night</button>
-      <button class="ttab" onclick="setTTab(this)">Day Tours</button>
+
+  <!-- Intro strip -->
+  <div class="prog-intro">
+    <div class="prog-intro-l">
+      <p class="prog-eyebrow">Full Programme · ABM 2026</p>
+      <h2 class="prog-big-title fu">PROGRAMME<br>OVERVIEW</h2>
+      <p class="prog-sub">Two cities. Two groups. Every day mapped out. These are the complete visual schedules for the Hong Kong and Macau legs of ABM 2026 — click any board to expand the full programme.</p>
+      <a href="#itin" class="btn-blk" style="background:var(--wht);color:var(--blk);">View detailed itinerary →</a>
+    </div>
+    <div class="prog-intro-r">
+      <div class="prog-stat">
+        <div class="prog-stat-n">5 DAYS</div>
+        <div class="prog-stat-l">Full programme<br>per group</div>
+      </div>
+      <div class="prog-stat">
+        <div class="prog-stat-n">2 CITIES</div>
+        <div class="prog-stat-l">Hong Kong<br>+ Macau</div>
+      </div>
+      <div class="prog-stat">
+        <div class="prog-stat-n">2 GROUPS</div>
+        <div class="prog-stat-l">Staggered<br>8–14 May</div>
+      </div>
+      <div class="prog-stat">
+        <div class="prog-stat-n">1 GALA</div>
+        <div class="prog-stat-l">Venetian Grand<br>Ball Room</div>
+      </div>
     </div>
   </div>
-  <div class="tour-cards-wrap">
-    <div class="tcards" id="tcards">
 
-      <!-- Card 1: Arrival / Ngong Ping -->
-      <div class="tcard" onclick="activateT(this)">
-        <div class="tcard-n">01</div>
-        <div class="tcard-img" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/HONGKONG-ARRIVAL%20NGONG%20PING%20CABLE%20CAR.jpg');"></div>
-        <div class="tcard-foot"><div class="tcard-label">Arrival Day</div></div>
+  <!-- The two schedule image boards -->
+  <div class="prog-boards">
+
+    <!-- Board 1: Hong Kong -->
+    <div class="prog-board" id="board-hk">
+      <div class="prog-board-label">
+        <div class="prog-board-city">
+          <span class="prog-city-pill">Hong Kong</span>
+          <span class="prog-board-dates">Days 1–3 of Programme</span>
+        </div>
+        <button class="prog-board-toggle" onclick="toggleBoard('board-hk', this)">
+          Expand ↕
+        </button>
       </div>
 
-      <!-- Card 2: Group 1 (active) -->
-      <div class="tcard on" onclick="activateT(this)">
-        <div class="tcard-n">02</div>
-        <div class="tcard-img" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/HONGKONG-ARRIVAL%20NGONG%20PING%20CABLE%20CAR%20and%20HONGKONG%20OCEAN%20PARK%20(FULL%20DAY)%20and%20HONG%20KONG%20-%20CITY%20TOUR%20%2B%20VICTORIA%20PEAK%20FERRY%20TO%20MACAU.png');"></div>
-        <div class="tcard-body">
-          <div class="tcard-label">Group 1</div>
-          <div class="tcard-desc">8–12 May. Starts at Harbour Grand Kowloon and culminates at Venetian Macau for the full-day conference &amp; Gala Award Night.</div>
-          <a class="tcard-link" href="#itin">View schedule →</a>
+      <div class="prog-board-img-wrap" onclick="toggleBoard('board-hk', this.closest('.prog-board').querySelector('.prog-board-toggle'))">
+        <img
+          src="https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/HONGKONG-ARRIVAL%20NGONG%20PING%20CABLE%20CAR%20and%20HONGKONG%20OCEAN%20PARK%20(FULL%20DAY)%20and%20HONG%20KONG%20-%20CITY%20TOUR%20%2B%20VICTORIA%20PEAK%20FERRY%20TO%20MACAU.png"
+          alt="Hong Kong Programme — Ngong Ping Cable Car, Ocean Park Full Day, City Tour, Victoria Peak, Ferry to Macau"
+          loading="lazy"
+        >
+        <div class="prog-board-mask"></div>
+      </div>
+
+      <div class="prog-board-footer">
+        <div class="prog-activities">
+          <span class="prog-act">🚡 Ngong Ping Cable Car</span>
+          <span class="prog-act">🎡 Ocean Park Full Day</span>
+          <span class="prog-act">🎆 Evening Fireworks</span>
+          <span class="prog-act">🗼 Victoria Peak</span>
+          <span class="prog-act">🎭 Madame Tussauds</span>
+          <span class="prog-act">⛴️ Ferry to Macau</span>
         </div>
       </div>
-
-      <!-- Card 3: Macau Meeting -->
-      <div class="tcard" onclick="activateT(this)">
-        <div class="tcard-n">03</div>
-        <div class="tcard-img" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/MACAU%20-%20MEETING%20(FULL%20DAY).jpg');"></div>
-        <div class="tcard-foot"><div class="tcard-label">Conference</div></div>
-      </div>
-
-      <!-- Card 4: Group 2 -->
-      <div class="tcard" onclick="activateT(this)">
-        <div class="tcard-n">04</div>
-        <div class="tcard-img" style="background-image:url('https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/MACAU%20-%20MEETING%20(FULL%20DAY)%20and%20MACAU%20-%20CITY%20TOUR%20SHOPPING%20-%20DEPARTURE.png');"></div>
-        <div class="tcard-foot"><div class="tcard-label">Group 2</div></div>
-      </div>
-
     </div>
-  </div>
-  <div class="tour-footer">
-    <button class="cbtn" onclick="slideT(-1)">←</button>
-    <span class="ccount" id="tc">1 / 3</span>
-    <button class="cbtn" onclick="slideT(1)">→</button>
+
+    <!-- Board 2: Macau -->
+    <div class="prog-board" id="board-mc">
+      <div class="prog-board-label">
+        <div class="prog-board-city">
+          <span class="prog-city-pill">Macau</span>
+          <span class="prog-board-dates">Days 3–5 of Programme</span>
+        </div>
+        <button class="prog-board-toggle" onclick="toggleBoard('board-mc', this)">
+          Expand ↕
+        </button>
+      </div>
+
+      <div class="prog-board-img-wrap" onclick="toggleBoard('board-mc', this.closest('.prog-board').querySelector('.prog-board-toggle'))">
+        <img
+          src="https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/MACAU%20-%20MEETING%20(FULL%20DAY)%20and%20MACAU%20-%20CITY%20TOUR%20SHOPPING%20-%20DEPARTURE.png"
+          alt="Macau Programme — Full Day Meeting, Gala Dinner & Awards, City Tour, Shopping, Departure"
+          loading="lazy"
+        >
+        <div class="prog-board-mask"></div>
+      </div>
+
+      <div class="prog-board-footer">
+        <div class="prog-activities">
+          <span class="prog-act">💎 Diamond Show</span>
+          <span class="prog-act">🗼 Eiffel Tower View</span>
+          <span class="prog-act">🎤 Full Day Conference</span>
+          <span class="prog-act">🏆 Gala Dinner &amp; Awards</span>
+          <span class="prog-act">🗺️ City Tour</span>
+          <span class="prog-act">✈️ Departure</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -656,6 +831,13 @@ footer { background: var(--blk); padding: 44px 36px; display: flex; align-items:
 <script>
 const BASE = 'https://raw.githubusercontent.com/digigh/coro-abm-web/main/images/';
 
+// Programme board expand/collapse
+function toggleBoard(id, btn) {
+  const board = document.getElementById(id);
+  const isExpanded = board.classList.toggle('expanded');
+  btn.textContent = isExpanded ? 'Collapse ↑' : 'Expand ↕';
+}
+
 // Destination slider
 let di = 0;
 function slideDest(d) {
@@ -665,22 +847,7 @@ function slideDest(d) {
   document.getElementById('dc').textContent = `${di + 1} / 4`;
 }
 
-// Tour slider
-let ti = 0;
-function slideT(d) {
-  const c = document.getElementById('tcards');
-  ti = Math.max(0, Math.min(2, ti + d));
-  c.style.transform = `translateX(-${ti * 274}px)`;
-  document.getElementById('tc').textContent = `${ti + 1} / 3`;
-}
-function activateT(el) {
-  document.querySelectorAll('.tcard').forEach(x => x.classList.remove('on'));
-  el.classList.add('on');
-}
-function setTTab(el) {
-  document.querySelectorAll('.ttab').forEach(x => x.classList.remove('on'));
-  el.classList.add('on');
-}
+
 
 // Itinerary group toggle
 function swGrp(g, btn) {
