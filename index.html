@@ -183,23 +183,7 @@ body { font-family: var(--B); background: var(--wht); color: var(--blk); overflo
 .pcta { display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; font-size: .72rem; font-weight: 600; color: var(--blk); text-decoration: none; opacity: .55; transition: opacity .2s; }
 .pcard:hover .pcta { opacity: 1; }
 
-/* ════ 7. GAMIFICATION ════ */
-#gami { background: var(--blk); padding: 0; }
-.gami-body { display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh; }
-.gami-l { padding: 68px 52px; border-right: 1px solid rgba(255,255,255,.07); display: flex; flex-direction: column; justify-content: center; }
-.gami-eye { font-size: .65rem; text-transform: uppercase; letter-spacing: .18em; color: rgba(255,255,255,.3); margin-bottom: 16px; }
-.gami-title { font-family: var(--H); font-size: clamp(3.2rem,4.5vw,4.8rem); text-transform: uppercase; color: var(--wht); line-height: .9; margin-bottom: 22px; }
-.gami-desc { font-size: .87rem; color: rgba(255,255,255,.5); line-height: 1.7; max-width: 320px; margin-bottom: 32px; }
-.ggrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.gcard { padding: 20px 18px; border: 1px solid rgba(255,255,255,.07); transition: border-color .2s; }
-.gcard:hover { border-color: rgba(255,255,255,.22); }
-.gico { font-size: 1.5rem; margin-bottom: 9px; display: block; }
-.gtitle { font-weight: 600; font-size: .86rem; color: var(--wht); margin-bottom: 3px; }
-.gdesc { font-size: .72rem; color: rgba(255,255,255,.38); line-height: 1.5; }
-.gami-r { padding: 68px 52px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-.gami-big { font-size: 5.5rem; margin-bottom: 18px; }
-.gami-r h3 { font-family: var(--H); font-size: 3rem; text-transform: uppercase; color: var(--peach); margin-bottom: 16px; line-height: .9; }
-.gami-r p { font-size: .84rem; color: rgba(255,255,255,.48); line-height: 1.7; max-width: 300px; }
+
 
 /* ════ 8. REGISTRATION ════ */
 #reg { background: var(--cream); padding: 80px 36px; }
@@ -258,7 +242,7 @@ footer { background: var(--blk); padding: 44px 36px; display: flex; align-items:
     <div class="brand" style="color:var(--wht);">ABM 2026 <sup>®</sup></div>
     <div class="nav-cols">
       <div class="nav-col"><a href="#dest">Destinations</a><a href="#services">Services</a><a href="#tours">Groups</a><a href="#about">About</a></div>
-      <div class="nav-col"><a href="#itin">Itinerary</a><a href="#places">Places</a><a href="#gami">Gamification</a><a href="#reg">Register</a></div>
+      <div class="nav-col"><a href="#itin">Itinerary</a><a href="#places">Places</a><a href="#reg">Register</a></div>
     </div>
     <div class="nav-r"><button class="nav-pill dark">May 2026 ▾</button><div class="nav-ham"><span></span><span></span></div></div>
   </nav>
@@ -622,27 +606,7 @@ footer { background: var(--blk); padding: 44px 36px; display: flex; align-items:
 </section>
 
 
-<!-- ══════════ 7. GAMIFICATION ══════════ -->
-<section id="gami">
-  <div class="gami-body">
-    <div class="gami-l">
-      <div class="gami-eye">Engagement · ABM 2026</div>
-      <h2 class="gami-title fu">GAMIFIED<br>QUIZZES</h2>
-      <p class="gami-desc">Get an opportunity to win exciting awards through interactive quizzes and team games. Questions shared ahead — games developed for on-site engagement at Venetian Macau.</p>
-      <div class="ggrid">
-        <div class="gcard"><span class="gico">🧠</span><div class="gtitle">Knowledge Quizzes</div><div class="gdesc">Questions shared ahead of the event</div></div>
-        <div class="gcard"><span class="gico">🎮</span><div class="gtitle">Interactive Games</div><div class="gdesc">Team games developed for on-site play</div></div>
-        <div class="gcard"><span class="gico">🏆</span><div class="gtitle">Exciting Awards</div><div class="gdesc">Prizes &amp; recognition for top performers</div></div>
-        <div class="gcard"><span class="gico">🌟</span><div class="gtitle">Gala Ceremony</div><div class="gdesc">Awards at Venetian Grand Ball Room</div></div>
-      </div>
-    </div>
-    <div class="gami-r">
-      <div class="gami-big">🏅</div>
-      <h3>WIN EXCITING<br>AWARDS</h3>
-      <p>Participate in quizzes, games &amp; team challenges throughout ABM 2026. Top performers recognised at the Evening Gala Dinner &amp; Award Function at Venetian, Macau — 11th May 2026.</p>
-    </div>
-  </div>
-</section>
+
 
 
 <!-- ══════════ 8. REGISTRATION ══════════ -->
